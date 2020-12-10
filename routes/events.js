@@ -5,17 +5,15 @@ const Event = require("../models/events");
 const User = require("../models/user");
 const uploadCloud = require("../config/cloudinary");
 
-router.get("/events/add-event", withAuth, function (req, res, next) {
-  res.render("events/add-event");
-});
+
+//ADD EVENT
 
 router.post(
   "/events/add-event",
   uploadCloud.single("photo"),
-  withAuth,
   async (req, res, next) => {
-    const { name, description, date, location } = req.body;
-
+    const { name, creator, description, date, location, isPublic, cohort } = req.body;
+// ANOTHER ROUTE TO UPLOAD THE PICTURE WILL GO BELOW
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, "0");
     var mm = String(today.getMonth() + 1).padStart(2, "0");
@@ -58,65 +56,51 @@ router.post(
 
       const imgPath = req.file.url;
 
-      await Event.create({
+      const newEvent = await Event.create({
         name,
         date,
         location,
         description,
         imgPath,
+        isPublic, 
+        cohort,
+        creator
       });
-      res.redirect("all-events");
+      res.status(200).json(newEvent)
     } catch (error) {
       next(error);
     }
-    User.findOneAndUpdate(
-      { _id: req.session.currentUserInfo._id },
-      { $push: { event: event.id } },
-      { new: true }
-    ).then((user) => console.log("The event was created!"));
-  }
-);
+  });
 
-router.get("/events/all-events", withAuth, function (req, res, next) {
+  //ALL EVENTS LIST
+
+router.get("/events/all-events", function (req, res, next) {
   Event.find()
     .then((allTheEventsFromDB) => {
       console.log("Retrieved events from DB:", allTheEventsFromDB);
-      res.render("events/all-events", { events: allTheEventsFromDB });
+      res.json( allTheEventsFromDB );
     })
     .catch((error) => {
       next(error);
     });
 });
 
-router.post("/events/all-events", withAuth, async function (req, res, next) {
-  try {
-    const event = await Event.find();
-  } catch (error) {next(error);}
-});
+//EVENT DETAILS
 
-router.get("/events/event-details/:id", withAuth, async (req, res, next) => {
+router.get("/events/event-details/:id", async (req, res, next) => {
   const { id } = req.params;
   console.log(id);
-  Event.findOne({ _id: id }).then((event) => {
-    res.render("events/event-details", { event, layout: false });
+  Event.findById({ _id: id }).then((event) => {
+    res.json( event );
   });
 });
 
-router.get("/events/edit", withAuth, function (req, res, next) {
-  Event.findOne({ _id: req.query.event_id })
-    .then((event) => {
-      res.render("events/edit-event", { event });
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-});
+//EDIT EVENT INFORMATION
 
-router.post(
+router.put(
   "/events/edit",
-  withAuth,
   (req, res, next) => {
-    const { name, description, date, location } = req.body;
+    const { name, description, date, location, isPublic, cohort, imgPath } = req.body;
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, "0");
     var mm = String(today.getMonth() + 1).padStart(2, "0");
@@ -146,88 +130,60 @@ router.post(
       return;
     }
 
-    Event.update(
+    Event.findByIdAndUpdate(
       { _id: req.query.event_id },
-      { $set: { name, description, date, location } }
+      { $set: { name, description, date, location, isPublic, cohort, imgPath } }
     )
-      .then((event) => {
-        res.redirect("/events/all-events");
-      })
+      .then((event) => { res.json(event) })
       .catch((error) => {
         console.log(error);
       });
   }
 );
 
-//edit event picture
-router.get("/events/editPhoto", withAuth, function (req, res, next) {
-  Event.findOne({ _id: req.query.event_id })
-    .then((event) => {
-      res.render("events/edit-photo", { event });
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-});
-
-router.post(
-  "/events/editPhoto",
-  [uploadCloud.single("photo"), withAuth],
-   async (req, res, next) => {
-    const imgPath = req.file.url;
-
-    await Event.updateOne(
-      { _id: req.query.event_id },
-      { $set: { imgPath } },
-      { new: true }
-    )
-      .then((event) => {
-        res.redirect("all-events");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+//EDIT EVENT PICTURE
+router.post("/upload", uploadCloud.single("imgPath"), (req, res, next) => {
+  if (!req.file) {
+    next(new Error("No file uploaded!"));
+    return;
   }
-);
-
-//delete event
-
-router.post("/events/delete", withAuth, async (req, res, next) => {
-  await Event.deleteOne({ _id: req.query.event_id });
-  res.redirect("all-events");
+  res.json({ secure_url: req.file.secure_url });
 });
 
-// FAV EVENTS
+//DELETE EVENT
 
-router.get("/attend-event/fav", withAuth, async (req, res, next) => {
-  const userId = req.user;
-  console.log(userId);
+router.delete("/events/delete/:id", async (req, res, next) => {
+  const deletedEvent = await Event.findByIdAndDelete({ _id: req.params.id });
+  res.json(deletedEvent);
+});
+
+// WILL ATTEND EVENTS
+
+router.get("/events/fav", async (req, res, next) => {
+  const userId = req.session.currentUser._id;
   try {
-    const user = await User.findById(userId).populate('favEvent')
-    console.log(user)
-    console.log(userId, "this is the user id");
-    res.render("user/fav-events", { user });
+    const eventsCreated = await Event.find( {creator: userId} )
+    const willGoEvents = await Event.find( {attending: {$in: [userId]}} )
+    res.json( { eventsCreated, willGoEvents });
   } catch (error) {
     next(error);
     return;
   }
 });
 
-router.post("/attend-event/fav", withAuth, async (req, res, next) => {
+//WILL ATTEND BUTTON
+router.post("/events/fav",  async (req, res, next) => {
   try {
-    console.log("entered the route");
-    const { user_id, event_id } = req.query;
+    const { user_id, event_id } = req.body;
 
-      await User.findByIdAndUpdate(
-        user_id,
-        { $addToSet: { favEvent: event_id } },
+      const willAttend = await Event.findByIdAndUpdate(
+        event_id,
+        { $addToSet: { attending: user_id } },
         { new: true }
       )
-      console.log("Saved in the db!");
-      res.redirect("/attend-event/fav");
+      res.json(willAttend);
   } catch (error) {console.log(error)}
 });
 
-router.get
 
 module.exports = router;

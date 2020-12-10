@@ -8,7 +8,7 @@ const eventSchema = new Schema(
       date: Date,
       location: String,
       description: String,
-      photo: String,
+      imgPath: String,
       isPublic: {Boolean, default: false},
       attending: [{ type: Schema.Types.ObjectId, ref: "User"}],
       cohort: {type: String, enum: ['Web', 'Data', 'UX', 'all']}

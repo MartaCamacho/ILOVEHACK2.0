@@ -9,62 +9,19 @@ const uploadCloud = require("../config/cloudinary");
 const bcrypt = require("bcryptjs");
 const bcryptSalt = 10;
 
-/* GET home page. */
+//EDIT USER
 
-router.get("/", (req, res, next) => {
-  res.render("index", { title: "I <3 HACK" });
-});
-
-router.get("/faq", withAuth, function (req, res, next) {
-  res.render("faq");
-});
-
-router.get("/events", withAuth, function (req, res, next) {
-  res.render("all-events");
-});
-
-router.get("/fav-events", withAuth, function (req, res, next) {
-  res.render("user/fav-events");
-});
-
-router.get("/matches", withAuth, function (req, res, next) {
-  res.render("user/matches");
-});
-
-//profile details
-
-router.get("/myprofile", withAuth, async (req, res, next) => {
-  const userId = req.user._id;
-  console.log('this is the user ID', userId);
-  try {
-    const user = await User.findById(userId);
-    res.render("myprofile", { user });
-  } catch (error) {
-    next(error);
-    return;
-  }
-});
-
-//edit user profile
-
-router.get("/user/edit", withAuth, async (req, res, next) => {
-  await User.findOne({ _id: req.query.user_id })
-    .then((user) => {
-      res.render("user/edit-user", { user });
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-});
-
-router.post("/user/edit", withAuth, async (req, res, next) => {
+router.put("/user/edit", async (req, res, next) => {
   const {
     fullname,
     password,
-    repeatPassword,
-    user,
+    birthdate,
+    gender,
     email,
     description,
+    isHorny, 
+    searchFor,
+    imgPath,
   } = req.body;
 
   try {
@@ -92,66 +49,45 @@ router.post("/user/edit", withAuth, async (req, res, next) => {
     const salt = await bcrypt.genSaltSync(10);
     const hashPass = await bcrypt.hashSync(password, salt);
 
-    await User.findByIdAndUpdate(
-      req.query.user_id,
+    const updatedUser = await User.findByIdAndUpdate(
+      req.session.currentUser._id,
       {
         $set: {
           fullname,
           password: hashPass,
           repeatPassword,
+          birthdate,
+          gender,
           email,
           description,
+          isHorny, 
+          searchFor,
+          imgPath,
         },
       },
       { new: true }
     );
 
-    res.redirect("/myprofile");
+    res.json(updatedUser);
   } catch (error) {
     console.log(error);
   }
 });
 
 //edit user picture
-router.get("/user/editPhoto", withAuth, async (req, res, next) => {
-  try {
-    const user = await User.findOne({ _id: req.query.user_id });
-
-    res.render("user/edit-photo", { user });
-  } catch (error) {
-    console.log(error);
+router.post("/upload", uploadCloud.single("imgPath"), (req, res, next) => {
+  if (!req.file) {
+    next(new Error("No file uploaded!"));
+    return;
   }
+  res.json({ secure_url: req.file.secure_url });
 });
-
-router.post(
-  "/user/editPhoto",
-  uploadCloud.single("photo"),
-  withAuth,
-  async (req, res, next) => {
-    try {
-      const imgPath = req.file.url;
-
-      let user = await User.findByIdAndUpdate(
-        req.query.user_id,
-        { $set: { imgPath } },
-        { new: true }
-      );
-      if (user) {
-        res.redirect("/myprofile");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
-);
 
 //delete account
 
-router.post("/user/delete", withAuth, async (req, res, next) => {
-  await User.deleteOne({ _id: req.query.user_id });
-  res.redirect("/");
+router.delete("/user/delete", async (req, res, next) => {
+  const deletedUser = await User.findByIdAndDelete({ _id: req.session.currentUser });
+  res.json(deletedUser);
 });
-
-//add favourite events
 
 module.exports = router;

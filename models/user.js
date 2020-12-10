@@ -13,7 +13,7 @@ const userSchema = new Schema(
     answers: [String],
     isHorny: Boolean,
     matches: [{ type: Schema.Types.ObjectId, ref: "User"}],
-    searchFor: {type: String, enum: ['Male', 'Female', 'Both']},
+    searchFor: {type: String, enum: ['Male', 'Female', 'None', 'All']},
   },
   {
     timestamps: true,

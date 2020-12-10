@@ -11,20 +11,15 @@ const uploadCloud = require("../config/cloudinary");
 
 router.get(
   "/user/matches",
-  withAuth,
-  uploadCloud.single("photo"),
   async (req, res, next) => {
     try {
       //with this we find only the opposite sex:
       const allUsers = await User.find();
-      const searchUser = await User.findById(req.query.user_id);
+      const searchUser = await User.findById(req.session.currentUser._id);
 
       const genderArr = await allUsers.filter(
-        (d) => d.gender !== searchUser.gender
+        (d) => d.gender === searchUser.searchFor
       );
-
-      //   console.log("genderArr", genderArr);
-      //   console.log("searchUser", searchUser);
 
       var points = (searchUser, usuario) => {
         var pts = 0;
@@ -34,11 +29,9 @@ router.get(
         return pts;
       };
 
-      //points(searchUser, usuario2);
       const bestMatch = (searchUser, genderArr) => {
         const results = genderArr.filter((user) => {
           const pts = points(searchUser, user);
-          //console.log(pts);
           if (pts >= 7) {
             return user;
           }
@@ -62,6 +55,10 @@ router.post("/user/matches", withAuth, async function (req, res, next) {
   try {
     const user = await User.find();
   } catch (error) {}
+});
+
+router.detele("/matches",  function (req, res, next) {
+  res.render("user/matches");
 });
 
 module.exports = router;
