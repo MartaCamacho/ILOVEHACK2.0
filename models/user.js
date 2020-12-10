@@ -1,18 +1,19 @@
 const mongoose = require("mongoose");
-const { use } = require("../routes");
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
   {
-    fullname:String,
-    password:String,
-    birthdate:Date,
-    gender:String,
-    email:String,
-    description:String,
-    imgPath: {type:String},
-    answers: [],
-    favEvent: [ { type: Schema.Types.ObjectId, ref: "Event"} ],
+    fullname: String,
+    password: String,
+    birthdate: Date,
+    gender: {type: String, enum: ['Male', 'Female', 'None']},
+    email: String,
+    description: String,
+    imgPath: String,
+    answers: [String],
+    isHorny: Boolean,
+    matches: [{ type: Schema.Types.ObjectId, ref: "User"}],
+    searchFor: {type: String, enum: ['Male', 'Female', 'Both']},
   },
   {
     timestamps: true,
