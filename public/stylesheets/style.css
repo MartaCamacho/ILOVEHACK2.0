@@ -1,0 +1,1657 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "VT323", monospace;
+}
+
+body {
+  font: 34px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+img {
+  border-radius: 50px;
+}
+
+a {
+  color: #00b7ff;
+}
+
+/* ESto es el estilo del FAQ */
+.FAQ {
+  display: flex;
+  justify-content: center;
+}
+.textoFAQ {
+  display: flex;
+  justify-content: center;
+  font-size: 30px;
+  margin: 10px 0 100px 0;
+}
+.service-box {
+  font-size: 1.7em;
+  text-align: center;
+  border: 2px solid #eee;
+  border-radius: 20px;
+  box-sizing: border-box;
+  box-shadow: 2px 2px 10px 0 #eee;
+  margin: 50px 5% 0 5%;
+  padding: 20px;
+  width: 90%;
+  background-color: #d4d2ce;
+  font-size: 23px;
+}
+.service-box img {
+  height: 75px;
+}
+#structure > div {
+  display: flex;
+  justify-content: between;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin-top: -130px;
+}
+
+#structure {
+  background-image: url("");
+  background-size: cover;
+}
+
+/* NAVBAR */
+.navbar {
+  font-size: 27px;
+  font-family: "VT323", monospace;
+  border-radius: 0;
+}
+
+.navbar-brand img {
+  border-radius: 0;
+  height: 2rem;
+  width: 2.5rem;
+}
+
+#bluenav {
+  background-color: #1e3aa4;
+}
+
+nav {
+  margin: 0;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+}
+
+/* SIDEBAR */
+
+.sideNav {
+  width: 1rem;
+  position: fixed;
+  top: 50%;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-right: 5px;
+  z-index: 21;
+}
+
+.sideNav img:hover {
+  width: 25px;
+}
+
+.sideNav img {
+  width: 1.4rem;
+  border-radius: 0;
+}
+
+/* INDEX */
+
+.index-align {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.5rem;
+  margin: 0 1rem;
+}
+
+.btnlog {
+  display: flex;
+  justify-content: space-around;
+  box-sizing: border-box;
+  font-size: 16px;
+  outline: 0;
+  width: 100%;
+  margin-bottom: 2rem;
+  padding-top: 1rem;
+}
+
+.btnlog div {
+  padding: 0 0.2rem;
+}
+
+.index-text p {
+  text-align: justify;
+}
+
+#index-buttons {
+  font-size: 24px;
+  width: 100%;
+  padding: 0.5rem 2rem;
+}
+
+.logo {
+  margin: 5rem 0 3rem 0;
+  width: 90%;
+  height: 90%;
+}
+
+.index-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.index-side {
+  padding: 0 1rem;
+}
+
+/* LOGIN */
+
+.loginbtn {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 2rem;
+  width: 100%;
+}
+
+.loginstc {
+  margin-top: 87px;
+}
+
+.floating-heart {
+  margin-left: 40%;
+  margin-top: -110px;
+  animation-name: floating-heart;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  margin-left: -25px;
+  padding-left: 20px;
+}
+
+@keyframes floating-heart {
+  50% {
+    transform: translate(0, 50px);
+  }
+}
+
+#form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  margin: 0 auto;
+  width: 100%;
+  font-size: 16px;
+}
+
+#form h2 {
+  padding-top: 8rem;
+  text-align: center;
+  font-size: 25px;
+  font-family: "Orbitron", sans-serif;
+}
+#form h3 {
+  padding-top: 10rem;
+  text-align: center;
+  font-size: 16px;
+  font-family: "Orbitron", sans-serif;
+}
+
+#form label {
+  color: #666;
+  display: inline-block;
+  margin-bottom: 20px;
+  text-align: center;
+  width: 100%;
+  font-size: 16px;
+  font-family: "VT323", monospace;
+  padding: 0.5rem;
+}
+
+#form input {
+  box-sizing: border-box;
+  font-size: 16px;
+  outline: 0;
+  padding: 4px;
+  width: 100%;
+  margin-bottom: 20px;
+  padding-top: 20px;
+}
+
+#form button {
+  box-sizing: border-box;
+  font-size: 25px;
+  outline: 0;
+  width: 80%;
+  margin-bottom: 20px;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.error-message {
+  background: #f02b63;
+  box-sizing: border-box;
+  color: #fff;
+  margin: 20px auto;
+  padding: 20px;
+  width: 100%;
+}
+
+.account-message {
+  font-size: 1rem;
+}
+
+.signboton {
+  margin-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+/* SIGN UP */
+
+#form-signup {
+  margin: 0 auto;
+  padding: 2rem;
+  width: 100%;
+  font-size: 16px;
+}
+
+#form-signup h2 {
+  padding-top: 5rem;
+  text-align: center;
+  font-size: 25px;
+  font-family: "Orbitron", sans-serif;
+}
+#form-signup h3 {
+  padding-top: 10rem;
+  text-align: center;
+  font-size: 16px;
+  font-family: "Orbitron", sans-serif;
+}
+
+#form-signup label {
+  color: #666;
+  display: inline-block;
+  margin-bottom: 20px;
+  text-align: center;
+  width: 100%;
+  font-size: 16px;
+  font-family: "VT323", monospace;
+  padding: 0.5rem;
+}
+
+#form-signup input {
+  box-sizing: border-box;
+  font-size: 18px;
+  outline: 0;
+  padding: 4px;
+  width: 100%;
+  margin-bottom: 20px;
+  padding-top: 20px;
+}
+
+#form-signup button {
+  box-sizing: border-box;
+  font-size: 25px;
+  outline: 0;
+  width: 80%;
+  margin-bottom: 20px;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.sign-up {
+  padding-bottom: 1rem;
+}
+
+.test1 {
+  font-family: "Orbitron", sans-serif;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.question {
+  margin-top: 3rem;
+  width: 100%;
+}
+
+.question-container {
+  width: 100%;
+  border-bottom: 1px solid darkslategray;
+}
+.answers {
+  font-family: "VT323", monospace;
+  width: 100%;
+}
+.the-answers {
+  list-style: none;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+
+.separate-boxes-list {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  width: 33%;
+  height: 100%;
+  text-align: center;
+}
+
+.registrobtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 90px;
+  margin-bottom: 10%;
+  width: 62%;
+  font-family: "VT323", monospace;
+  font-size: 20px;
+}
+
+.gender {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.gender div {
+  display: flex;
+  flex-direction: row;
+}
+
+#signup-submit {
+  margin-top: 1rem;
+}
+
+/* MY PROFILE */
+
+.greeting {
+  font-size: 18px;
+  padding-top: 7%;
+  margin: 0 40px;
+}
+
+.description {
+  font-size: 18px;
+  /* margin-left: 26%;  */
+  text-align: justify;
+  margin: 0 40px;
+}
+
+.btnprofile {
+  /* display: flex;
+  justify-content: space-around; */
+  box-sizing: border-box;
+  outline: 0;
+  padding: 4px;
+  width: 100%;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+.btnprofile button {
+  padding: 0.5rem 1rem;
+  font-size: 16px;
+  width: 80%;
+}
+.btnmatch {
+  display: flex;
+}
+
+.profileimg {
+  max-width: 300px;
+  max-height: 350px;
+  min-width: 300px;
+  min-height: 350px;
+  margin-top: 30px;
+  padding: 30px;
+  background-color: #ececf0;
+}
+
+.profile-align {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 2rem;
+  max-height: fit-content;
+}
+
+.align-edite-image a {
+  font-size: 16px;
+  padding: 40px;
+}
+
+/* EDIT USER */
+
+.edit-user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 15px;
+  padding-top: 130px;
+}
+
+.edit-user > input {
+  width: 70%;
+}
+
+.img-edit-btn {
+  padding-top: 65px;
+}
+
+.edit-btn {
+  margin-top: 40px;
+  font-size: 19px;
+  width: 80%;
+}
+
+.edit-btn button {
+  width: 40%;
+}
+
+.edit-profile-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.delete-profile-btn {
+  font-size: 19px;
+}
+
+.btnedituser {
+  box-sizing: border-box;
+  font-size: 50px;
+  outline: 0;
+  padding: 1px;
+  width: 67%;
+  margin-bottom: 20px;
+  margin-top: 140px;
+  text-align: center;
+}
+
+.tituloedit {
+  font-size: 18px;
+  padding-bottom: 2rem;
+}
+
+/* ALL EVENTS */
+
+.eventalign {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 2rem;
+  padding: 1rem 1rem;
+  border-radius: 10%;
+  background-color: #ececf0;
+  font-weight: bolder;
+  text-align: left;
+}
+.btnprofile2 {
+  /* display: flex;
+  justify-content: space-around; */
+  box-sizing: border-box;
+  font-size: 50px;
+  outline: 0;
+  padding: 4px;
+  width: 100%;
+  margin-bottom: 20px;
+  padding-right: 10px;
+  margin-left: 230px;
+}
+
+.btnevent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 25px;
+  font-size: 30px;
+}
+
+.eventtitle {
+  font-size: 20px;
+  margin: 80px 1rem 30px;
+  background-color: #000c66;
+  color: white;
+  padding: 1rem;
+}
+
+.nombreevento {
+  font-size: 18px;
+  text-align: left;
+}
+
+.event-name-box {
+  padding-top: 1rem;
+}
+
+.imgevent {
+  margin-top: 1rem;
+  border: 0.15rem solid white;
+  width: 100%;
+}
+
+.all-events-button {
+  -webkit-border-radius: 14;
+  -moz-border-radius: 14;
+  border-radius: 14px;
+  font-family: "VT323", monospace;
+  color: #ffffff;
+  font-size: 15px;
+  background: #1e3aa4;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  border: 0.5rem outset black;
+}
+
+.all-events-button:hover {
+  text-decoration: none;
+}
+
+.event-details-button-allign {
+  display: flex;
+  justify-content: center;
+}
+
+
+#event-details {
+  margin: 2rem;
+  width: 90%;
+}
+
+/* ADD-EVENT */
+
+.descadd {
+  font-size: 18px;
+  padding: 30px 0;
+  display: flex;
+  justify-content: center;
+  text-align: justify;
+  margin: 0 60px;
+  margin-bottom: -120px;
+}
+
+.formadd {
+  padding-bottom: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 20px;
+  padding-top: 120px;
+}
+.formadd > input {
+  width: 60%;
+}
+
+.addbtn {
+  box-sizing: border-box;
+  font-size: 23px;
+  outline: 0;
+  padding: 4px;
+  width: 70%;
+  margin-bottom: 50px;
+  padding-right: 10px;
+  margin-left: 60px;
+}
+
+.align-allevent {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #ececf0;
+}
+
+.btnadd2 {
+  box-sizing: border-box;
+  outline: 0;
+  padding: 4px;
+  margin: 4px;
+}
+
+.click-me {
+  padding: 0.5rem 40px;
+}
+
+/* EDIT EVENT */
+
+.btneditevent1 {
+  box-sizing: border-box;
+  font-size: 20px;
+  outline: 0;
+  padding: 1px;
+  width: 50%;
+  margin-bottom: 20px;
+  margin-right: 0px;
+  margin-top: 40px;
+}
+
+.editform1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 40px;
+  padding-top: 40px;
+}
+.editform1 input {
+  width: 60%;
+  font-size: 18px;
+}
+.editform1 label {
+  font-size: 20px;
+}
+
+.btn-edit-event {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  margin-right: 200px;
+}
+
+.btn-delete {
+  width: 50%;
+  font-size: 20px;
+  /* margin-left: 25%; */
+  margin-bottom: 40px;
+}
+
+/* EVENT DETAIL */
+.align-event-details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 0;
+}
+
+.align-event-details h2 {
+  font-size: 28px;
+}
+
+.img-eventdetails {
+  width: 90%;
+}
+
+#event-details p {
+  font-size: 36px;
+  width: 100%;
+}
+
+#event-details-title {
+  margin-top: 0;
+}
+
+.details-button {
+  font-size: 22px;
+  display: flex;
+  padding-bottom: 2rem;
+  font-size: 22px;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.edit-event-btn {
+  margin-left: 1rem;
+  width: 33%;
+  text-align: center;
+  height: 100%;
+}
+
+.btn-light-desc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 18px;
+}
+
+#event-details p {
+  font-size: 18px;
+}
+
+.eventtitle-details {
+  font-size: 20px;
+  margin: 40px 1rem 30px;
+  background-color: #000c66;
+  color: white;
+  padding: 1rem;
+}
+
+/* EDIT PHOTO */
+.align-photoedit-event {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#btn-edit-profilepic {
+  width: 35%;
+}
+
+/* .align-photoedit-event input {
+  margin-left: 300px;
+  margin-top: 20px;
+} */
+
+.input-form-align {
+  margin: 0;
+  margin: 4rem;
+}
+
+.photoedit-event-width {
+  margin-top: 3rem;
+  width: 75%;
+}
+.tituloedit-event {
+  font-size: 26px;
+  padding-bottom: 40px;
+}
+.btnedituser {
+  font-size: 20px;
+  padding: 10px 70px 10px 40px;
+}
+.btneditevent {
+  margin-left: 320px;
+}
+.editform {
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 90%;
+  padding-top: 1rem;
+}
+
+.editform button {
+  margin-top: 2rem;
+}
+
+.btneditevent2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 20px;
+  /* margin-left: 320px; */
+  margin: 0;
+  /* width: 40%; */
+}
+
+.img-photo-profileedit {
+  max-width: 80%;
+  max-height: 80%;
+  min-width: 250px;
+  min-height: 400px;
+  margin-top: 10px;
+  padding-bottom: 30px;
+}
+
+.edit-photo-align {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+#editform-user-photo {
+  margin: 1rem;
+}
+
+#btn-edit-profilepic {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+/* LIGHT BUTTON */
+@import "compass/css3";
+
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+
+#switch {
+  visibility: hidden;
+  clip: rect(0 0 0 0);
+  /* position: absolute;  */
+  left: 9999px;
+}
+
+.switch {
+  display: block;
+  width: 130px;
+  height: 60px;
+  margin: 70px auto;
+  position: relative;
+  background: #ced8da; /* Old browsers */
+  background: -moz-linear-gradient(
+    left,
+    #ced8da 0%,
+    #d8e0e3 29%,
+    #ccd4d7 34%,
+    #d4dcdf 62%,
+    #fff9f4 68%,
+    #e1e9ec 74%,
+    #b7bfc2 100%
+  ); /* FF3.6+ */
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    color-stop(0%, #ced8da),
+    color-stop(29%, #d8e0e3),
+    color-stop(34%, #ccd4d7),
+    color-stop(62%, #d4dcdf),
+    color-stop(68%, #fff9f4),
+    color-stop(74%, #e1e9ec),
+    color-stop(100%, #b7bfc2)
+  ); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(
+    left,
+    #ced8da 0%,
+    #d8e0e3 29%,
+    #ccd4d7 34%,
+    #d4dcdf 62%,
+    #fff9f4 68%,
+    #e1e9ec 74%,
+    #b7bfc2 100%
+  ); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(
+    left,
+    #ced8da 0%,
+    #d8e0e3 29%,
+    #ccd4d7 34%,
+    #d4dcdf 62%,
+    #fff9f4 68%,
+    #e1e9ec 74%,
+    #b7bfc2 100%
+  ); /* Opera 11.10+ */
+  background: -ms-linear-gradient(
+    left,
+    #ced8da 0%,
+    #d8e0e3 29%,
+    #ccd4d7 34%,
+    #d4dcdf 62%,
+    #fff9f4 68%,
+    #e1e9ec 74%,
+    #b7bfc2 100%
+  ); /* IE10+ */
+  background: linear-gradient(
+    to right,
+    #ced8da 0%,
+    #d8e0e3 29%,
+    #ccd4d7 34%,
+    #d4dcdf 62%,
+    #fff9f4 68%,
+    #e1e9ec 74%,
+    #b7bfc2 100%
+  ); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ced8da', endColorstr='#b7bfc2',GradientType=1 ); /* IE6-9 */
+  transition: all 0.2s ease-out;
+  cursor: pointer;
+  border-radius: 0.35em;
+  box-shadow: 0 0 1px 2px rgba(0, 0, 0, 0.7),
+    inset 0 2px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -1px 0 1px rgba(0, 0, 0, 0.3), 0 8px 10px rgba(0, 0, 0, 0.15);
+}
+
+.switch:before {
+  display: block;
+  position: absolute;
+  left: -35px;
+  right: -35px;
+  top: -25px;
+  bottom: -25px;
+  z-index: -2;
+  content: "";
+  border-radius: 0.4em;
+  background: #d5dde0;
+  background: linear-gradient(#d7dfe2, #bcc7cd);
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -1px 1px 1px rgba(0, 0, 0, 0.3), 0 0 8px 2px rgba(0, 0, 0, 0.2),
+    0 2px 4px 2px rgba(0, 0, 0, 0.1);
+  pointer-events: none;
+  transition: all 0.2s ease-out;
+}
+
+.switch:after {
+  content: "";
+  position: absolute;
+  right: -25px;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #788b91;
+  margin-top: -8px;
+  z-index: -1;
+  box-shadow: inset 0 -1px 8px rgba(0, 0, 0, 0.7),
+    inset 0 -2px 2px rgba(0, 0, 0, 0.2), 0 1px 0 white,
+    0 -1px 0 rgba(0, 0, 0, 0.5), -47px 32px 15px 13px rgba(0, 0, 0, 0.25);
+}
+
+#switch:checked ~ .switch {
+  background: #b7bfc2; /* Old browsers */
+  background: -moz-linear-gradient(
+    left,
+    #b7bfc2 0%,
+    #e1e9ec 26%,
+    #fff9f4 32%,
+    #d4dcdf 38%,
+    #ccd4d7 66%,
+    #d8e0e3 71%,
+    #ced8da 100%
+  ); /* FF3.6+ */
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    color-stop(0%, #b7bfc2),
+    color-stop(26%, #e1e9ec),
+    color-stop(32%, #fff9f4),
+    color-stop(38%, #d4dcdf),
+    color-stop(66%, #ccd4d7),
+    color-stop(71%, #d8e0e3),
+    color-stop(100%, #ced8da)
+  ); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(
+    left,
+    #b7bfc2 0%,
+    #e1e9ec 26%,
+    #fff9f4 32%,
+    #d4dcdf 38%,
+    #ccd4d7 66%,
+    #d8e0e3 71%,
+    #ced8da 100%
+  ); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(
+    left,
+    #b7bfc2 0%,
+    #e1e9ec 26%,
+    #fff9f4 32%,
+    #d4dcdf 38%,
+    #ccd4d7 66%,
+    #d8e0e3 71%,
+    #ced8da 100%
+  ); /* Opera 11.10+ */
+  background: -ms-linear-gradient(
+    left,
+    #b7bfc2 0%,
+    #e1e9ec 26%,
+    #fff9f4 32%,
+    #d4dcdf 38%,
+    #ccd4d7 66%,
+    #d8e0e3 71%,
+    #ced8da 100%
+  ); /* IE10+ */
+  background: linear-gradient(
+    to right,
+    #b7bfc2 0%,
+    #e1e9ec 26%,
+    #fff9f4 32%,
+    #d4dcdf 38%,
+    #ccd4d7 66%,
+    #d8e0e3 71%,
+    #ced8da 100%
+  ); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b7bfc2', endColorstr='#ced8da',GradientType=1 ); /* IE6-9 */
+}
+
+#switch:checked ~ .switch:after {
+  background: #b1ffff;
+  box-shadow: inset 0 -1px 8px rgba(0, 0, 0, 0.7),
+    inset 0 -2px 2px rgba(0, 0, 0, 0.2), 0 1px 0 white,
+    0 -1px 0 rgba(0, 0, 0, 0.5), -110px 32px 15px 13px rgba(0, 0, 0, 0.25);
+}
+
+/* 3D button */
+
+.futurist-button {
+  -webkit-border-radius: 14;
+  -moz-border-radius: 14;
+  border-radius: 14px;
+  font-family: "VT323", monospace;
+  color: #ffffff;
+  font-size: 20px;
+  background: #1e3aa4;
+  text-decoration: none;
+  border: 0.5rem outset black;
+}
+
+.futurist-button:hover {
+  text-decoration: none;
+}
+
+/* FOOTER */
+
+footer {
+  text-align: center;
+  height: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  background-color: #ececf0;
+  width: 100%;
+}
+
+/* END OF FOOTER */
+
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+
+@media screen and (min-width: 1000px) {
+  /* 3D button */
+
+  .futurist-button {
+    -webkit-border-radius: 14;
+    -moz-border-radius: 14;
+    border-radius: 14px;
+    font-family: "VT323", monospace;
+    color: #ffffff;
+    font-size: 35px;
+    background: #1e3aa4;
+    padding: 14px 20px 10px 20px;
+    text-decoration: none;
+    border: 0.5rem outset black;
+  }
+
+  .futurist-button:hover {
+    text-decoration: none;
+    color: darkblue;
+  }
+  /* END OF 3D BUTTON */
+
+  /* NAVBAR */
+  nav {
+    margin-top: 0;
+    height: 26%;
+    width: 100%;
+    margin-left: 0;
+    position: fixed;
+  }
+  .nav-link {
+    margin-left: 140px;
+    padding: 0;
+  }
+
+  nav img {
+    width: 100;
+    height: 100;
+  }
+  /* SIGN UP */
+
+  .the-answers {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .question {
+    margin-top: 30px;
+    width: 100%;
+  }
+  #signup-submit {
+    width: 80%;
+    padding: 0 30rem;
+  }
+
+  #signup-but {
+    width: 80%;
+  }
+  #form input {
+    width: 50%;
+    margin-left: 25%;
+    font-size: 28px;
+  }
+  #form label {
+    font-size: 32px;
+  }
+  .account-message {
+    font-size: 22px;
+  }
+  #form h2 {
+    font-size: 40px;
+  }
+  #form button {
+    width: 50%;
+  }
+
+  #form-signup label {
+    font-size: 32px;
+  }
+
+  #form-signup input {
+    width: 50%;
+    margin-left: 25%;
+    font-size: 28px;
+  }
+
+  #form-signup h2 {
+    font-size: 35px;
+  }
+
+  #form-signup button {
+    width: 30%;
+    margin-bottom: 20px;
+    padding: 0.5rem;
+    text-align: center;
+  }
+
+  /* END OF SIGN UP */
+
+  /* INDICE */
+  .logo {
+    width: 50%;
+    max-width: 50rem;
+    margin-top: 4rem;
+  }
+  .index-align {
+    display: flex;
+    flex-direction: row;
+    font-size: 35px;
+  }
+  .btnlog {
+    font-size: 70px;
+    padding-right: 80px;
+  }
+  .btnlog a {
+    margin-left: 30px;
+  }
+  .index-side {
+    display: flex;
+    flex-direction: column;
+    padding: 15rem 7rem 5rem 7rem;
+    width: 50%;
+  }
+
+  /* NAVBAR */
+  nav {
+    margin-top: 0;
+    height: 26%;
+    width: 100%;
+    margin-left: 0;
+    position: fixed;
+  }
+  .nav-link {
+    margin-left: 140px;
+  }
+  nav img {
+    width: 100;
+    height: 100;
+  }
+  /* SIGN SIGN UP */
+  .signboton {
+    margin-top: 4rem;
+  }
+
+  .gender {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .gender div {
+    display: flex;
+    flex-direction: row;
+    font-size: 30px;
+  }
+
+  .gender div label {
+    margin-right: 2rem;
+  }
+
+  .the-answers {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0;
+    padding-top: 0.5rem;
+  }
+
+  .separate-boxes-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+
+    text-align: left;
+    padding: 0.5rem;
+    flex-wrap: nowrap;
+    height: 100%;
+  }
+
+  .separate-boxes-list input {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .separate-boxes-list p {
+    width: 100%;
+  }
+
+  .question {
+    margin-top: 30px;
+    width: 100%;
+  }
+  .signup-submit {
+    margin: 2rem 0 50rem 0;
+  }
+  #signup-submit {
+    width: 120%;
+    margin-left: 130px;
+  }
+
+  #create-account-button {
+    padding: 4rem;
+  }
+
+  .test1 {
+    font-size: 27px;
+  }
+
+  #sign-up-title {
+    font-size: 9rem;
+  }
+
+  /* END OF SIGN UP */
+
+  /* 
+MATCHES */
+
+  /* MY PROFILE  */
+  .profileimg {
+    max-width: 460px;
+    max-height: 600px;
+    min-width: 460px;
+    min-height: 400px;
+    margin-top: 90px;
+    padding-bottom: 30px;
+    margin-right: 70px;
+  }
+  .align-edite-image a {
+    font-size: 30px;
+    margin-right: 50px;
+  }
+  .greeting {
+    font-size: 38px;
+  }
+
+  .description {
+    font-size: 38px;
+  }
+
+  .profile-align {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .all-profile-align {
+    display: flex;
+    flex-direction: column;
+    padding: 0 20%;
+  }
+  .btnprofile button {
+    padding: 0;
+    font-size: 45px;
+  }
+
+  .btnprofile {
+    box-sizing: border-box;
+    font-size: 50px;
+    outline: 0;
+    padding: 4px;
+    width: 100%;
+    margin-bottom: 20px;
+    padding-right: 0;
+    margin-left: 0;
+    text-align: center;
+  }
+  .btnmatch {
+    display: flex;
+    justify-content: center;
+  }
+  /* END OF MY PROFILE  */
+
+  /* EDIT USER */
+  .edit-user {
+    font-size: 30px;
+    padding-top: -180px;
+  }
+
+  .edit-user > input {
+    width: 50%;
+  }
+
+  .img-edit-btn {
+    padding-top: 65px;
+  }
+
+  .edit-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 70px;
+    font-size: 32px;
+  }
+
+  .delete-profile-btn {
+    font-size: 32px;
+    margin-left: 70px;
+  }
+
+  /* EDIT PHOTO USER */
+
+  .tituloedit {
+    font-size: 39px;
+  }
+  .eventtitle {
+    margin-right: 6rem;
+  }
+
+  .eventtitle-details {
+    font-size: 30px;
+  }
+
+  .img-photo-profileedit {
+    max-width: 350px;
+    max-height: 100%;
+    min-width: 350px;
+    min-height: 500px;
+    margin-top: 10px;
+    padding-bottom: 30px;
+  }
+
+  .edit-photo-profile {
+    margin-left: 480px;
+  }
+
+  .editform {
+    font-size: 20px;
+    padding: 2rem 30%;
+  }
+
+  #editform-user-photo {
+    padding: 0;
+  }
+
+  .editform button {
+    margin-top: 4rem;
+  }
+
+  .btnedituser {
+    font-size: 32px;
+    padding: 1px;
+    margin-bottom: 20px;
+    margin-top: 40px;
+  }
+  /* ALL EVENTS */
+
+  .eventtitle {
+    font-size: 45px;
+  }
+  .btnadd2 {
+    font-size: 32px;
+  }
+  .nombreevento {
+    font-size: 26px;
+  }
+  .imgevent {
+    width: 50%;
+  }
+  .nombreevento {
+    margin-bottom: 0;
+  }
+
+  .all-events-button {
+    font-size: 30px;
+  }
+  .eventalign {
+    align-content: center;
+    margin: 1rem;
+    display: flex;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+  }
+
+  .event-name-box {
+    padding: 2rem;
+  }
+
+  .events-desktop-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .align-allpage {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+
+  .eventtitle {
+    font-size: 30px;
+    margin: 80px 1rem 30px;
+    background-color: #000c66;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  /* MATCHES */
+
+  #align-matches {
+    margin-left: 270px;
+    margin-right: 270px;
+  }
+
+  /* ADD NEW EVENT */
+  .align-add-event {
+    padding-top: 100px;
+  }
+  .tituloadd {
+    font-size: 52px;
+    margin-left: 35rem;
+  }
+
+  .descadd {
+    font-size: 32px;
+    margin: 0 25%;
+  }
+
+  .formadd {
+    padding-top: 15px;
+    font-size: 32px;
+  }
+  .formadd > input {
+    width: 50%;
+  }
+
+  .addbtn {
+    margin: 0;
+    font-size: 33px;
+    width: 30%;
+  }
+  .button-add-event {
+    display: flex;
+    justify-content: center;
+  }
+
+  .form-add-event {
+    margin-bottom: 3rem;
+  }
+
+  /* EVENT DETAIL */
+
+  /* EVENT DETAIL */
+
+  .align-event-details h2 {
+    padding-top: 2rem;
+    font-size: 38px;
+  }
+
+  .img-eventdetails {
+    padding-top: 2rem;
+    width: 90%;
+  }
+
+  .details-button {
+    font-size: 22px;
+  }
+  .edit-event-btn {
+    margin: 0.5rem 1rem;
+  }
+
+  .btn-light-desc {
+    font-size: 32px;
+  }
+
+  #event-details {
+    width: 50%;
+  }
+
+  #event-details p {
+    font-size: 18px;
+    padding: 0 2rem;
+  }
+
+  .img-eventdetails {
+    width: 50%;
+  }
+
+  .details-button {
+    font-size: 25px;
+  }
+
+  /* EDIT IMAGE EVENT */
+
+  .photoedit-event-width {
+    width: 30rem;
+  }
+
+  .tituloedit-event {
+    font-size: 38px;
+  }
+  .btneditevent2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
+
+  /* EDIT EVENT INFO */
+
+  .btneditevent1 {
+    font-size: 30px;
+  }
+
+  .editform1 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 20%;
+    font-size: 40px;
+  }
+  .editform1 input {
+    font-size: 28px;
+  }
+  .editform1 label {
+    font-size: 32px;
+  }
+
+  .edit-user-align {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+  }
+
+  #delete-user-account {
+    margin: 0;
+    padding: 0;
+  }
+
+  .btn-delete {
+    font-size: 30px;
+  }
+
+  #edit-event-align {
+    margin: 0 20%;
+  }
+
+  /* ESto es el estilo del FAQ */
+  .textoFAQ {
+    font-size: 39px;
+  }
+  .service-box {
+    font-size: 28px;
+    width: 45%;
+    margin: 2.5rem 1rem 1rem;
+  }
+
+  #structure {
+    width: 100%;
+  }
+
+  #structure > div {
+    display: flex;
+    justify-content: between;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* margin-top: -130px; */
+  }
+}
+@media screen and (max-width: 990px) and (min-width: 710px) {
+}
+
+@media screen and (max-width: 700px) {
+}
