@@ -16,7 +16,7 @@ router.get("/user", async (req, res, next) => {
     const theUser = await User.findById(req.session.currentUser)
     res.json(theUser)
   } catch (error) {
-    
+    console.log(error)
   }
 });
 
