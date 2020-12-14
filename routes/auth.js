@@ -10,7 +10,7 @@ const {
   isLoggedIn,
   isNotLoggedIn,
   validationLoggin,
-} = require("../helpers/middlewares");
+} = require("../helpers/middleware");
 
 // SIGN UP
 

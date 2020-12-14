@@ -1,11 +1,6 @@
-const { UnsupportedMediaType } = require("http-errors");
 var express = require("express");
 var router = express.Router();
-const withAuth = require("../helpers/middleware");
-
 const User = require("../models/user");
-const Event = require("../models/events");
-const uploadCloud = require("../config/cloudinary");
 
 //comparing users
 
@@ -51,14 +46,14 @@ router.get(
   }
 );
 
-router.post("/user/matches", withAuth, async function (req, res, next) {
+router.post("/user/matches",  async function (req, res, next) {
   try {
     const user = await User.find();
-  } catch (error) {}
+  } catch (error) {
+
+  }
 });
 
-router.detele("/matches",  function (req, res, next) {
-  res.render("user/matches");
-});
+
 
 module.exports = router;
