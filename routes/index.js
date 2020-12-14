@@ -9,6 +9,17 @@ const uploadCloud = require("../config/cloudinary");
 const bcrypt = require("bcryptjs");
 const bcryptSalt = 10;
 
+//GET USER
+
+router.get("/user", async (req, res, next) => {
+  try {
+    const theUser = await User.findById(req.session.currentUser)
+    res.json(theUser)
+  } catch (error) {
+    
+  }
+});
+
 //EDIT USER
 
 router.put("/user/edit", async (req, res, next) => {
