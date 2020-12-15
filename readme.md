@@ -30,7 +30,7 @@ User model
 {
 fullname: String,
 birthdate: Date,
-genre: String,
+gender: String,
 mail: String,
 photo: String,
 answers:[String],
@@ -57,9 +57,6 @@ public: Boolean,
 ## Routes
 - GET /
   - Renders the homepage
-- GET /auth/signup
-  - Redirects to / if user logged in
-  - Renders the signup form
 - POST /auth/signup
   - Redirects to / if user logged in
   - Body:
@@ -67,12 +64,9 @@ public: Boolean,
     - E-mail
     - Password
     - Repeat password
-    - Genre
+    - Gender
     - Birth date
     - Love test
-- GET /auth/login
-  - Redirects to / if user logged in
-  - Renders the login form 
 - POST /auth/login
   - Redirects to / if user logged in
   - Body:
@@ -84,8 +78,8 @@ public: Boolean,
   - Renders the event list + saved/favourite events
 - GET /events/:id
   - renders the event detail page
-  - includes the number (no names) of attendees -> maybe backlog
-  - attend button if user not attending yet -> maybe backlog
+  - includes the number (no names) of attendees 
+  - attend button if user not attending yet
 - POST /events/:id/attend
   - redirects to / if user is anonymous
   - body: (empty - the user is already stored in the session)
@@ -100,11 +94,11 @@ public: Boolean,
 * The user should be able of modifying his/her personal info and profile image. His/her profile images will be storage in a cloud (cloudinary)
 * Have 2 models or more
 * Use Express
+* User React
 
 
 <h2>Backlog:</h2>
 - Speed dating on Skype or Zoom
-- LGTB version(poner imagen y url y cuando clic pagina en desarrollo + animación)
 
 <h2>Data strucuture:</h2>
 
@@ -135,43 +129,24 @@ I<3hack-project/
         │       ├── events.js
         │
         └── views
-            ├── error.hbs
-            ├── index.hbs
-            ├── layout.hbs
-            ├── events.hbs
-                 |——- edit.hbs
-                 |——- delete.hbs  
-                ├── create.hbs      
+            ├── error.js
+            ├── index.js
+            ├── layout.js
+            ├── events.js
+                 |——- edit.js
+                 |——- delete.js  
+                ├── create.js      
             ├── auth
-            │   ├── login.hbs
-            │   └── signup.hbs
-            └── private
-                ├── userprofile.hbs
-                   ├── citas
-                    └── edit.hbs
+            │   ├── login.js
+            │   └── signup.js
 
 
 
-Link github: <a>https://github.com/chipiriguino/I-3HACK</a>
-Link trello: <a>https://trello.com/b/WDLCNTMt/apes-strong-together</a>
-Link I<3HACK: 
+Link trello: [Link](https://trello.com/b/OieWzAsk/ilovehack-v20)
+Link I<3HACK client: [Link ](https://github.com/EBM90/ilovehack-client)
 
+Link I<3HACK server: [Link](https://github.com/MartaCamacho/ILOVEHACK2.0-server)
 
+ 
 
-
-
-
-
-
-
-
-
-UX/UI QUESTIONS
-
-- ¿Deberíamos poner en la landing page una descripción de la aplicación? ¿O cómo deberíamos hacerlo?
-- ¿cómo se usa? - ¿Lo ponemos en el FAQ o lo ponemos en la landing page (o no se pone)?
-- ¿Deberíamos poner las notificaciones en la home page o deberíamos hacerlo en una pestaña a parte?
-- Chat: ¿Lo ponemos para todos los usuarios? ¿o solo para match?
-- Cuestionario sign up: ¿las preguntas las debemos separar de 5 en 5? ¿o mejor poner las 20 seguidas?
-- ¿Deberíamos poner "welcome 'user'" en la navbar?
-
+ 
