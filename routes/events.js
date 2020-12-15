@@ -96,7 +96,7 @@ router.get("/event-details/:id", async (req, res, next) => {
 //EDIT EVENT INFORMATION
 
 router.put(
-  "/edit",
+  "/edit/:id",
   (req, res, next) => {
     const { name, description, date, location, isPublic, cohort, imgPath } = req.body;
     var today = new Date();
