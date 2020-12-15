@@ -20,12 +20,13 @@ const eventSchema = new Schema(
   const Event = mongoose.model('Event', eventSchema);
   
   createEvent = async() => {
-    const name= 'IronBeer'
+    const name= 'Study session'
     const date = new Date()
-    const location = 'Barcelona'
+    const location = 'Room 2'
     await Event.create({name, date, location})
     console.log(name, date, location)
   }
 
+  // createEvent()
 
   module.exports = Event;
