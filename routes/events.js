@@ -10,60 +10,62 @@ router.post(
   "/add-event",
   uploadCloud.single("photo"),
   async (req, res, next) => {
-    const { name, creator, description, date, location, isPublic, cohort } = req.body;
+    const { name, creator, description, location, isPublic, cohort } = req.body;
 // ANOTHER ROUTE TO UPLOAD THE PICTURE WILL GO BELOW
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, "0");
-    var mm = String(today.getMonth() + 1).padStart(2, "0");
-    var yyyy = today.getFullYear();
+    // var today = new Date();
+    // var dd = String(today.getDate()).padStart(2, "0");
+    // var mm = String(today.getMonth() + 1).padStart(2, "0");
+    // var yyyy = today.getFullYear();
 
-    today = mm + dd + yyyy;
-    if (date < today) {
-      res.render("events/add-event", {
-        errorMessage: "The event has to happen in the future :)",
-      });
-      return;
-    } else if (name.length < 5) {
-      res.render("events/add-event", {
-        errorMessage: "Your event name should have at least 5 characters",
-      });
-      return;
-    } else if (description.length < 5) {
-      res.render("events/add-event", {
-        errorMessage: "Write a longer description!",
-      });
-      return;
-    } else if (location.length < 3) {
-      res.render("events/add-event", {
-        errorMessage:
-          "People will need to know where to go! Tell them the place ^^",
-      });
-      return;
-    }
+    // today = mm + dd + yyyy;
+    // if (date < today) {
+    //   res.render("events/add-event", {
+    //     errorMessage: "The event has to happen in the future :)",
+    //   });
+    //   return;
+    // } else if (name.length < 5) {
+    //   res.render("events/add-event", {
+    //     errorMessage: "Your event name should have at least 5 characters",
+    //   });
+    //   return;
+    // } else if (description.length < 5) {
+    //   res.render("events/add-event", {
+    //     errorMessage: "Write a longer description!",
+    //   });
+    //   return;
+    // } else if (location.length < 3) {
+    //   res.render("events/add-event", {
+    //     errorMessage:
+    //       "People will need to know where to go! Tell them the place ^^",
+    //   });
+    //   return;
+    // }
 
     // var cuteDate = date.toLocaleDateString("es-ES");
 
     try {
-      const event = await Event.findOne({ name: name, date: date });
-      if (event !== null) {
-        res.render("events/add-event", {
-          errorMessage: "This event already exists!",
-        });
-        return;
-      }
+      // const event = await Event.findOne({ name });
+      // if (event !== null) {
+      //   res.render("events/add-event", {
+      //     errorMessage: "This event already exists!",
+      //   });
+      //   return;
+      // }
 
-      const imgPath = req.file.url;
+      // const imgPath = req.file.url;
 
       const newEvent = await Event.create({
         name,
-        date,
+        // date,
         location,
         description,
-        imgPath,
+        // imgPath,
         isPublic, 
         cohort,
         creator
       });
+
+      await Event.findByIdAndUpdate(newEvent._id, {$push: {attending: req.session.currentUser}})
       res.status(200).json(newEvent)
     } catch (error) {
       next(error);
@@ -72,15 +74,9 @@ router.post(
 
   //ALL EVENTS LIST
 
-router.get("/all-events", function (req, res, next) {
-  Event.find()
-    .then((allTheEventsFromDB) => {
-      console.log("Retrieved events from DB:", allTheEventsFromDB);
-      res.json( allTheEventsFromDB );
-    })
-    .catch((error) => {
-      next(error);
-    });
+router.get("/all-events", async (req, res, next) => {
+  const allEvents = await Event.find().populate('attending')
+  res.status(200).json(allEvents)
 });
 
 //EVENT DETAILS
@@ -96,7 +92,7 @@ router.get("/event-details/:id", async (req, res, next) => {
 //EDIT EVENT INFORMATION
 
 router.put(
-  "/edit",
+  "/edit/:id",
   (req, res, next) => {
     const { name, description, date, location, isPublic, cohort, imgPath } = req.body;
     var today = new Date();
@@ -173,7 +169,8 @@ router.get("/fav", async (req, res, next) => {
 router.post("/fav",  async (req, res, next) => {
   try {
     const { user_id, event_id } = req.body;
-
+    console.log(user_id)
+    console.log(event_id)
       const willAttend = await Event.findByIdAndUpdate(
         event_id,
         { $addToSet: { attending: user_id } },
