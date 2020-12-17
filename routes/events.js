@@ -1,15 +1,13 @@
 var express = require("express");
 var router = express.Router();
-const withAuth = require("../helpers/middleware");
 const Event = require("../models/events");
-const User = require("../models/user");
 const uploadCloud = require("../config/cloudinary");
 
 
 //ADD EVENT
 
 router.post(
-  "/events/add-event",
+  "/add-event",
   uploadCloud.single("photo"),
   async (req, res, next) => {
     const { name, creator, description, date, location, isPublic, cohort } = req.body;
@@ -74,7 +72,7 @@ router.post(
 
   //ALL EVENTS LIST
 
-router.get("/events/all-events", function (req, res, next) {
+router.get("/all-events", function (req, res, next) {
   Event.find()
     .then((allTheEventsFromDB) => {
       console.log("Retrieved events from DB:", allTheEventsFromDB);
@@ -87,7 +85,7 @@ router.get("/events/all-events", function (req, res, next) {
 
 //EVENT DETAILS
 
-router.get("/events/event-details/:id", async (req, res, next) => {
+router.get("/event-details/:id", async (req, res, next) => {
   const { id } = req.params;
   console.log(id);
   Event.findById({ _id: id }).then((event) => {
@@ -98,7 +96,7 @@ router.get("/events/event-details/:id", async (req, res, next) => {
 //EDIT EVENT INFORMATION
 
 router.put(
-  "/events/edit",
+  "/edit",
   (req, res, next) => {
     const { name, description, date, location, isPublic, cohort, imgPath } = req.body;
     var today = new Date();
@@ -152,14 +150,14 @@ router.post("/upload", uploadCloud.single("imgPath"), (req, res, next) => {
 
 //DELETE EVENT
 
-router.delete("/events/delete/:id", async (req, res, next) => {
+router.delete("/delete/:id", async (req, res, next) => {
   const deletedEvent = await Event.findByIdAndDelete({ _id: req.params.id });
   res.json(deletedEvent);
 });
 
 // WILL ATTEND EVENTS
 
-router.get("/events/fav", async (req, res, next) => {
+router.get("/fav", async (req, res, next) => {
   const userId = req.session.currentUser._id;
   try {
     const eventsCreated = await Event.find( {creator: userId} )
@@ -172,7 +170,7 @@ router.get("/events/fav", async (req, res, next) => {
 });
 
 //WILL ATTEND BUTTON
-router.post("/events/fav",  async (req, res, next) => {
+router.post("/fav",  async (req, res, next) => {
   try {
     const { user_id, event_id } = req.body;
 

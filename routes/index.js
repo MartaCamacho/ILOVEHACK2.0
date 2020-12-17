@@ -3,15 +3,24 @@ var router = express.Router();
 
 const Event = require("../models/events.js");
 const User = require("../models/user.js");
-const withAuth = require("../helpers/middleware");
-const { use } = require("./auth.js");
 const uploadCloud = require("../config/cloudinary");
-const bcrypt = require("bcryptjs");
-const bcryptSalt = 10;
+
+
+
+//GET USER
+
+router.get("/", async (req, res, next) => {
+  try {
+    const theUser = await User.findById(req.session.currentUser)
+    res.json(theUser)
+  } catch (error) {
+    console.log(error)
+  }
+});
 
 //EDIT USER
 
-router.put("/user/edit", async (req, res, next) => {
+router.put("/edit", async (req, res, next) => {
   const {
     fullname,
     password,
@@ -85,7 +94,7 @@ router.post("/upload", uploadCloud.single("imgPath"), (req, res, next) => {
 
 //delete account
 
-router.delete("/user/delete", async (req, res, next) => {
+router.delete("/delete", async (req, res, next) => {
   const deletedUser = await User.findByIdAndDelete({ _id: req.session.currentUser });
   res.json(deletedUser);
 });

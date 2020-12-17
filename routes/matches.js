@@ -1,8 +1,5 @@
-const { UnsupportedMediaType } = require("http-errors");
 var express = require("express");
 var router = express.Router();
-const withAuth = require("../helpers/middleware");
-
 const User = require("../models/user");
 
 //comparing users
@@ -61,5 +58,7 @@ router.get(
 /* router.detele("/matches",  function (req, res, next) {
   res.render("user/matches");
 }); */
+
+
 
 module.exports = router;
