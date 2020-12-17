@@ -16,11 +16,11 @@ const {
 
 router.post(
   "/signup", 
-  uploadCloud.single("photo"),
+  /* uploadCloud.single("photo"), */
   isNotLoggedIn(),
   validationLoggin(),
   async (req, res, next) => {
-    const { fullname, password, repeatPassword, birthdate, email, gender, description } = req.body;
+    const { fullname, password, repeatPassword, birthdate, email, gender, description, isHorny, searchFor } = req.body;
   
     try {
       const emailExists = await User.findOne({ email }, "email");
@@ -38,7 +38,7 @@ router.post(
           gender,
           email,
           description,
-          answers: [question1,
+          /* answers: [question1,
              question2,
              question3,
              question4,
@@ -47,7 +47,7 @@ router.post(
              question7,
              question8,
              question9,
-             question10],
+             question10], */
              isHorny, 
              searchFor,
           
@@ -87,7 +87,7 @@ router.post(
         next(createError(401, 'password not valid'));
       }
     } catch (error) {
-      next(error);
+      next(error, console.log('del login no pasas, neng'));
     }
   }
 );
