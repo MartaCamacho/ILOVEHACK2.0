@@ -5,8 +5,6 @@ const Event = require("../models/events.js");
 const User = require("../models/user.js");
 const uploadCloud = require("../config/cloudinary");
 
-
-
 //GET USER
 
 router.get("/", async (req, res, next) => {

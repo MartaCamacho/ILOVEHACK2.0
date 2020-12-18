@@ -84,9 +84,9 @@ router.get("/all-events", async (req, res, next) => {
 router.get("/event-details/:id", async (req, res, next) => {
   const { id } = req.params;
   console.log(id);
-  Event.findById({ _id: id }).then((event) => {
-    res.json( event );
-  });
+  const theEvent = await Event.findById(id)
+    res.json( theEvent );
+  console.log(theEvent)
 });
 
 //EDIT EVENT INFORMATION
