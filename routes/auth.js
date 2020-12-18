@@ -20,7 +20,7 @@ router.post(
   isNotLoggedIn(),
   validationLoggin(),
   async (req, res, next) => {
-    const { fullname, password, repeatPassword, birthdate, email, gender, description, isHorny, searchFor } = req.body;
+    const { fullname, password, repeatPassword, birthdate, email, gender, description, /*isHorny,*/ searchFor } = req.body;
   
     try {
       const emailExists = await User.findOne({ email }, "email");
@@ -47,8 +47,8 @@ router.post(
              question7,
              question8,
              question9,
-             question10], */
-             isHorny, 
+             question10], 
+             isHorny, */
              searchFor,
           
           // imgPath,
