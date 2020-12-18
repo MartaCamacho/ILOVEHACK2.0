@@ -87,7 +87,7 @@ router.post(
         next(createError(401, 'password not valid'));
       }
     } catch (error) {
-      next(error, console.log('del login no pasas, neng'));
+      next(error);
     }
   }
 );
