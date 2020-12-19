@@ -7,7 +7,7 @@ const uploadCloud = require("../config/cloudinary");
 
 //GET USER
 
-router.get("/", async (req, res, next) => {
+router.get("/profile", async (req, res, next) => {
   try {
     const theUser = await User.findById(req.session.currentUser)
     res.json(theUser)
