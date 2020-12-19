@@ -90,6 +90,10 @@ router.post("/upload", uploadCloud.single("imgPath"), (req, res, next) => {
   res.json({ secure_url: req.file.secure_url });
 });
 
+//see other profile
+
+
+
 //delete account
 
 router.delete("/delete", async (req, res, next) => {
