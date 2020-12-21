@@ -10,36 +10,9 @@ router.post(
   "/add-event",
   uploadCloud.single("photo"),
   async (req, res, next) => {
-    const { name, creator, description, location, isPublic, cohort } = req.body;
+    const { name, creator, description, date, location, isAttending, isPublic, cohort } = req.body;
 // ANOTHER ROUTE TO UPLOAD THE PICTURE WILL GO BELOW
-    // var today = new Date();
-    // var dd = String(today.getDate()).padStart(2, "0");
-    // var mm = String(today.getMonth() + 1).padStart(2, "0");
-    // var yyyy = today.getFullYear();
-
-    // today = mm + dd + yyyy;
-    // if (date < today) {
-    //   res.render("events/add-event", {
-    //     errorMessage: "The event has to happen in the future :)",
-    //   });
-    //   return;
-    // } else if (name.length < 5) {
-    //   res.render("events/add-event", {
-    //     errorMessage: "Your event name should have at least 5 characters",
-    //   });
-    //   return;
-    // } else if (description.length < 5) {
-    //   res.render("events/add-event", {
-    //     errorMessage: "Write a longer description!",
-    //   });
-    //   return;
-    // } else if (location.length < 3) {
-    //   res.render("events/add-event", {
-    //     errorMessage:
-    //       "People will need to know where to go! Tell them the place ^^",
-    //   });
-    //   return;
-    // }
+    
 
     // var cuteDate = date.toLocaleDateString("es-ES");
 
@@ -56,7 +29,7 @@ router.post(
 
       const newEvent = await Event.create({
         name,
-        // date,
+        date,
         location,
         description,
         // imgPath,
@@ -65,7 +38,11 @@ router.post(
         creator
       });
 
-      await Event.findByIdAndUpdate(newEvent._id, {$push: {attending: req.session.currentUser}})
+      if(isAttending){
+        await Event.findByIdAndUpdate(newEvent._id, {$addToSet:{attending: req.session.currentUser}})
+      }
+
+      
       res.status(200).json(newEvent)
     } catch (error) {
       next(error);
