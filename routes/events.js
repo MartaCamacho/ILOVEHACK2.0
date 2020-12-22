@@ -8,12 +8,12 @@ const uploadCloud = require("../config/cloudinary");
 
 router.post(
   "/add-event",
-  uploadCloud.single("photo"),
+  uploadCloud.single("imgPath"),
   async (req, res, next) => {
-    const { name, creator, description, date, location, isAttending, isPublic, cohort } = req.body;
+    const { name, creator, imgPath, description, date, location, isAttending, isPublic, cohort } = req.body;
 // ANOTHER ROUTE TO UPLOAD THE PICTURE WILL GO BELOW
     
-
+    console.log(imgPath)
     // var cuteDate = date.toLocaleDateString("es-ES");
 
     try {
@@ -32,7 +32,7 @@ router.post(
         date,
         location,
         description,
-        // imgPath,
+        imgPath,
         isPublic, 
         cohort,
         creator
@@ -42,12 +42,20 @@ router.post(
         await Event.findByIdAndUpdate(newEvent._id, {$addToSet:{attending: req.session.currentUser}})
       }
 
-      
+      console.log(newEvent)
       res.status(200).json(newEvent)
     } catch (error) {
       next(error);
     }
   });
+
+ router.post("/uploadpicture", uploadCloud.single("imgPath"), (req, res, next) => {
+  if (!req.file) {
+    next(new Error("No file uploaded!"));
+    return;
+  }
+  res.json({ secure_url: req.file.secure_url });
+});
 
   //ALL EVENTS LIST
 
@@ -69,9 +77,9 @@ router.get("/event-details/:id", async (req, res, next) => {
 //EDIT EVENT INFORMATION
 
 router.put(
-  "/edit/:id",
+  "/edit",
   (req, res, next) => {
-    const { name, description, date, location, isPublic, cohort, imgPath } = req.body;
+    const { fullname, description, date, location, isPublic, cohort, imgPath } = req.body;
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, "0");
     var mm = String(today.getMonth() + 1).padStart(2, "0");
@@ -83,7 +91,7 @@ router.put(
         errorMessage: "The event has to happen in the future :)",
       });
       return;
-    } else if (name.length < 5) {
+    } else if (fullname.length < 5) {
       res.render("events/add-event", {
         errorMessage: "Your event name should have at least 5 characters",
       });
@@ -113,13 +121,13 @@ router.put(
 );
 
 //EDIT EVENT PICTURE
-router.post("/upload", uploadCloud.single("imgPath"), (req, res, next) => {
-  if (!req.file) {
-    next(new Error("No file uploaded!"));
-    return;
-  }
-  res.json({ secure_url: req.file.secure_url });
-});
+// router.post("/upload", uploadCloud.single("imgPath"), (req, res, next) => {
+//   if (!req.file) {
+//     next(new Error("No file uploaded!"));
+//     return;
+//   }
+//   res.json({ secure_url: req.file.secure_url });
+// });
 
 //DELETE EVENT
 
