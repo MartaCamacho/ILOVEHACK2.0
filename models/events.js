@@ -8,6 +8,7 @@ const eventSchema = new Schema(
       date: Date,
       location: String,
       description: String,
+      time: String,
       imgPath: String,
       isPublic: {Boolean, default: false},
       attending: [{ type: Schema.Types.ObjectId, ref: "User"}],

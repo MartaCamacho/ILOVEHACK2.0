@@ -30,7 +30,7 @@ router.post(
       else {
         const salt = bcrypt.genSaltSync(saltRounds);
         const hashPass = bcrypt.hashSync(password, salt);
-        // const imgPath = req.file.url;
+        const imgPath = './defaultpic.jpg'
         const newUser = await User.create({ 
           fullname,
           password: hashPass,
@@ -41,8 +41,7 @@ router.post(
           description,
           isHorny, 
           searchFor,
-          
-          // imgPath,
+          imgPath,
          });
          console.log(newUser, 'el user')
         req.session.currentUser = newUser;

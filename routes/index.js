@@ -5,11 +5,9 @@ const Event = require("../models/events.js");
 const User = require("../models/user.js");
 const uploadCloud = require("../config/cloudinary");
 
-
-
 //GET USER
 
-router.get("/profile", async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
     const theUser = await User.findById(req.session.currentUser)
     res.json(theUser)
@@ -18,59 +16,60 @@ router.get("/profile", async (req, res, next) => {
   }
 });
 
+
 //EDIT USER
 
 router.put("/edit", async (req, res, next) => {
   const {
     fullname,
-    password,
-    birthdate,
-    gender,
+    // password,
+    // birthdate,
+    // gender,
     email,
     description,
-    isHorny, 
-    searchFor,
+    // isHorny, 
+    // searchFor,
     imgPath,
   } = req.body;
 
   try {
-    if (password.length < 8) {
-      res.render("user/edit", {
-        errorMessage: "Your password should have at least 8 characters",
-      });
-      return;
-    } else if (password !== repeatPassword) {
-      res.render("user/edit", {
-        errorMessage: "Your passwords are not matching",
-      });
-      return;
-    } else if (fullname.length === "") {
-      res.render("user/edit", {
-        errorMessage: "Your match will need to know how to call you ;)",
-      });
-      return;
-    } else if (description.length < 10) {
-      res.render("user/edit", {
-        errorMessage: "Tell your future match a bit more about yourself!",
-      });
-      return;
-    }
-    const salt = await bcrypt.genSaltSync(10);
-    const hashPass = await bcrypt.hashSync(password, salt);
+    // if (password.length < 8) {
+    //   res.render("user/edit", {
+    //     errorMessage: "Your password should have at least 8 characters",
+    //   });
+    //   return;
+    // } else if (password !== repeatPassword) {
+    //   res.render("user/edit", {
+    //     errorMessage: "Your passwords are not matching",
+    //   });
+    //   return;
+    // } else if (fullname.length === "") {
+    //   res.render("user/edit", {
+    //     errorMessage: "Your match will need to know how to call you ;)",
+    //   });
+    //   return;
+    // } else if (description.length < 10) {
+    //   res.render("user/edit", {
+    //     errorMessage: "Tell your future match a bit more about yourself!",
+    //   });
+    //   return;
+    // }
+    // const salt = await bcrypt.genSaltSync(10);
+    // const hashPass = await bcrypt.hashSync(password, salt);
 
     const updatedUser = await User.findByIdAndUpdate(
       req.session.currentUser._id,
       {
         $set: {
           fullname,
-          password: hashPass,
-          repeatPassword,
-          birthdate,
-          gender,
+          // password: hashPass,
+          // repeatPassword,
+          // birthdate,
+          // gender,
           email,
           description,
-          isHorny, 
-          searchFor,
+          // isHorny, 
+          // searchFor,
           imgPath,
         },
       },
@@ -84,13 +83,17 @@ router.put("/edit", async (req, res, next) => {
 });
 
 //edit user picture
-router.post("/upload", uploadCloud.single("imgPath"), (req, res, next) => {
+router.post("/uploadpicture", uploadCloud.single("imgPath"), (req, res, next) => {
   if (!req.file) {
     next(new Error("No file uploaded!"));
     return;
   }
   res.json({ secure_url: req.file.secure_url });
 });
+
+//see other profile
+
+
 
 //delete account
 
