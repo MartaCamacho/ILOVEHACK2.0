@@ -74,14 +74,14 @@ app.use(express.static(path.join(__dirname, "public")));
 // ROUTER MIDDLEWARE
 
 app.use("/events", events);
-app.use("/", user);
+app.use("/user", user);
 app.use("/", matches);
 app.use("/auth", auth);
 
 // ROUTE FOR SERVING REACT APP (index.html)
 app.use((req, res) => {
   // If no routes match, send them the React HTML.
-  res.sendFile(__dirname + "/public/index.html");
+  res.sendFile(__dirname + "/public/ErrorPage/Error.jsx");
 });
 
 // ERROR HANDLING
