@@ -74,8 +74,8 @@ app.use(express.static(path.join(__dirname, "public")));
 // ROUTER MIDDLEWARE
 
 app.use("/events", events);
-app.use("/user", user);
-app.use("/", matches);
+app.use("/profile", user);
+app.use("/matches", matches);
 app.use("/auth", auth);
 
 // ROUTE FOR SERVING REACT APP (index.html)
