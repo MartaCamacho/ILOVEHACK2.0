@@ -39,13 +39,13 @@ app.use(
   })
 );
 
-//  app.use((req, res, next) => {
-//    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-//    res.setHeader('Access-Control-Allow-Methods', 'GET, PUT, POST, OPTIONS, DELETE');
-//    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-//    res.setHeader('Access-Control-Allow-Credentials', true);
-//    next();
-//  });
+ app.use((req, res, next) => {
+   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+   res.setHeader('Access-Control-Allow-Methods', 'GET, PUT, POST, OPTIONS, DELETE');
+   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+   res.setHeader('Access-Control-Allow-Credentials', true);
+   next();
+ });
 
 
 // SESSION MIDDLEWARE
@@ -74,8 +74,8 @@ app.use(express.static(path.join(__dirname, "public")));
 // ROUTER MIDDLEWARE
 
 app.use("/events", events);
-app.use("/profile", user);
-app.use("/matches", matches);
+app.use("/", user);
+app.use("/", matches);
 app.use("/auth", auth);
 
 // ROUTE FOR SERVING REACT APP (index.html)

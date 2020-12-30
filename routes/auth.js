@@ -20,7 +20,7 @@ router.post(
   isNotLoggedIn(),
   validationLoggin(),
   async (req, res, next) => {
-    const { fullname, password, repeatPassword, birthdate, email, gender, description, isHorny, searchFor } = req.body;
+    const { fullname, password, repeatPassword, birthdate, email, gender, description, isHorny, searchFor, answers } = req.body;
   
     try {
       const emailExists = await User.findOne({ email }, "email");
@@ -37,21 +37,13 @@ router.post(
           birthdate,
           gender,
           email,
+          answers,
           description,
-          /* answers: [question1,
-             question2,
-             question3,
-             question4,
-             question5,
-             question6,
-             question7,
-             question8,
-             question9,
-             question10], */
-             isHorny, 
-             searchFor,
-            imgPath,
+          isHorny, 
+          searchFor,
+          imgPath,
          });
+         console.log(newUser, 'el user')
         req.session.currentUser = newUser;
         res
           .status(200) 
