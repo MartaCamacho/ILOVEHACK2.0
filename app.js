@@ -51,13 +51,13 @@ app.use(
   })
 );
 
-//  app.use((req, res, next) => {
-//    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-//    res.setHeader('Access-Control-Allow-Methods', 'GET, PUT, POST, OPTIONS, DELETE');
-//    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-//    res.setHeader('Access-Control-Allow-Credentials', true);
-//    next();
-//  });
+ app.use((req, res, next) => {
+   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+   res.setHeader('Access-Control-Allow-Methods', 'GET, PUT, POST, OPTIONS, DELETE');
+   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+   res.setHeader('Access-Control-Allow-Credentials', true);
+   next();
+ });
 
 
 // SESSION MIDDLEWARE
@@ -90,11 +90,11 @@ app.use("/profile", user);
 app.use("/matches", matches);
 app.use("/auth", auth);
 
-/* // ROUTE FOR SERVING REACT APP (index.html)
+// ROUTE FOR SERVING REACT APP (index.html)
 app.use((req, res) => {
   // If no routes match, send them the React HTML.
   res.sendFile(__dirname + "/public/index.html");
-}); */
+});
 
 // ERROR HANDLING
 // catch 404 and forward to error handler
