@@ -69,7 +69,6 @@ router.get("/all-events", async (req, res, next) => {
 router.get("/event-details/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
-    console.log(id);
     const theEvent = await Event.findById(id).populate('attending')
     res.json( theEvent );
   } catch (error) {
@@ -127,8 +126,6 @@ router.get("/fav", async (req, res, next) => {
 router.post("/fav",  async (req, res, next) => {
   try {
     const { user_id, event_id } = req.body;
-    console.log(user_id)
-    console.log(event_id)
       const willAttend = await Event.findByIdAndUpdate(
         event_id,
         { $addToSet: { attending: user_id } },
@@ -136,6 +133,21 @@ router.post("/fav",  async (req, res, next) => {
       )
       res.json(willAttend);
   } catch (error) {console.log(error)}
+});
+
+//WILL NOT ATTEND EVENT
+
+router.put("/fav", async (req, res, next) => {
+  try {
+    const { event_id, user_id } = req.body;
+      const willNotAttend = await Event.findByIdAndUpdate(
+        event_id,
+      { $pull: { attending: user_id } },
+      { new: true }
+      ) 
+      console.log(willNotAttend, 'lo borro')
+      res.json(willNotAttend);
+  } catch (error) { console.log(error) }
 });
 
 
