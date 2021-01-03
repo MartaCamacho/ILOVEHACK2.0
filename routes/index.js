@@ -4,6 +4,7 @@ var router = express.Router();
 const Event = require("../models/events.js");
 const User = require("../models/user.js");
 const uploadCloud = require("../config/cloudinary");
+const { findById, findByIdAndUpdate } = require("../models/user.js");
 
 //GET USER
 
@@ -93,6 +94,14 @@ router.post("/uploadpicture", uploadCloud.single("imgPath"), (req, res, next) =>
 
 //see other profile
 
+
+// get user's answers
+
+router.post('/answers', async (req, res, next) =>{
+  const answers = req.body
+  const theUser = await User.findByIdAndUpdate(req.session.currentUser._id, {$set: {answers}}) 
+  res.json(theUser)
+});
 
 
 //delete account
