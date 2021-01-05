@@ -3,6 +3,7 @@ var router = express.Router();
 
 const Event = require("../models/events.js");
 const User = require("../models/user.js");
+const Question = require("../models/questions.js");
 const uploadCloud = require("../config/cloudinary");
 const { findById, findByIdAndUpdate } = require("../models/user.js");
 
@@ -16,6 +17,17 @@ router.get("/", async (req, res, next) => {
     console.log(error)
   }
 });
+
+//GET QUESTIONS
+
+router.get('/questions', async (req, res, next)=>{
+  try {
+    const theQuestions = await Question.find()
+    res.json(theQuestions)
+  } catch (error) {
+    console.log(error)
+  }
+})
 
 
 //EDIT USER
