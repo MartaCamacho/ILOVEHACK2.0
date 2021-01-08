@@ -30,7 +30,7 @@ router.post(
       else {
         const salt = bcrypt.genSaltSync(saltRounds);
         const hashPass = bcrypt.hashSync(password, salt);
-        const imgPath = '/defaultpic.jpg'
+        const imgPath = './defaultpic.jpg'
         const newUser = await User.create({ 
           fullname,
           password: hashPass,
