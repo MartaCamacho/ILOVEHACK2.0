@@ -18,6 +18,17 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+//GET ALL USERS
+router.get("/allusers", async (req, res, next) => {
+  try {
+    const theUsers = await User.find()
+    res.json(theUsers)
+  } catch (error) {
+    console.log(error)
+  }
+});
+
+
 //GET QUESTIONS
 
 router.get('/questions', async (req, res, next)=>{
