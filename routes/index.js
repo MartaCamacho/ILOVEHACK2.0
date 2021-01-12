@@ -3,7 +3,9 @@ var router = express.Router();
 
 const Event = require("../models/events.js");
 const User = require("../models/user.js");
+const Question = require("../models/questions.js");
 const uploadCloud = require("../config/cloudinary");
+const { findById, findByIdAndUpdate } = require("../models/user.js");
 
 //GET USER
 
@@ -30,6 +32,28 @@ router.get("/:id", async (req, res, next) => {
   
  
 });
+
+//GET ALL USERS
+router.get("/allusers", async (req, res, next) => {
+  try {
+    const theUsers = await User.find()
+    res.json(theUsers)
+  } catch (error) {
+    console.log(error)
+  }
+});
+
+
+//GET QUESTIONS
+
+router.get('/questions', async (req, res, next)=>{
+  try {
+    const theQuestions = await Question.find()
+    res.json(theQuestions)
+  } catch (error) {
+    console.log(error)
+  }
+})
 
 
 //EDIT USER
@@ -108,6 +132,14 @@ router.post("/uploadpicture", uploadCloud.single("imgPath"), (req, res, next) =>
 
 //see other profile
 
+
+// get user's answers
+
+router.post('/answers', async (req, res, next) =>{
+  const answers = req.body
+  const theUser = await User.findByIdAndUpdate(req.session.currentUser._id, {$set: {answers}}) 
+  res.json(theUser)
+});
 
 
 //delete account

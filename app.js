@@ -93,7 +93,7 @@ app.use("/auth", auth);
 // ROUTE FOR SERVING REACT APP (index.html)
 app.use((req, res) => {
   // If no routes match, send them the React HTML.
-  res.sendFile(__dirname + "/public/index.html");
+  res.sendFile(__dirname + "/public/ErrorPage/Error.jsx");
 });
 
 // ERROR HANDLING
