@@ -16,6 +16,21 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+//USER DETAILS
+
+router.get("/:id", async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    console.log(id);
+    const theUser = await User.findById(id).populate('attending')
+    res.json( theUser );
+  } catch (error) {
+    console.log(error)
+  }
+  
+ 
+});
+
 
 //EDIT USER
 
