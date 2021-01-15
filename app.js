@@ -15,6 +15,18 @@ const events = require('./routes/events');
 const user = require("./routes/index");
 const matches = require("./routes/matches");
 
+// const http = require ('http');
+
+// const socketio = require ('socket.io');
+// const io = socketio(servidor);
+
+// io.on('connection', socket =>{
+//   socket.on('conectado', ()=> {
+//       console.log('usuario conectado')
+//   })
+// }
+// )
+
 
 // MONGOOSE CONNECTION
 mongoose
