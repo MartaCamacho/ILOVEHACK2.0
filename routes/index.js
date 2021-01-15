@@ -28,7 +28,6 @@ router.get("/allusers", async (req, res, next) => {
   }
 });
 
-
 //GET QUESTIONS
 
 router.get('/questions', async (req, res, next)=>{
@@ -40,6 +39,10 @@ router.get('/questions', async (req, res, next)=>{
   }
 })
 
+//WHAT THE USER WANTS
+
+
+//GET RECOMMENDATIOS
 
 //EDIT USER
 

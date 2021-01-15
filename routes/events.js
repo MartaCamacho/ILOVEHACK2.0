@@ -10,12 +10,8 @@ router.post(
   "/add-event",
   uploadCloud.single("imgPath"),
   async (req, res, next) => {
-    const { name, creator, imgPath, description, date, time, location, isAttending, isPublic, cohort } = req.body;
-// ANOTHER ROUTE TO UPLOAD THE PICTURE WILL GO BELOW
-    
-    console.log(imgPath)
-    // var cuteDate = date.toLocaleDateString("es-ES");
-
+    const { name, creator, kind, imgPath, description, date, time, location, isAttending, isPublic, cohort } = req.body;
+    console.log(kind)
     try {
       // const event = await Event.findOne({ name });
       // if (event !== null) {
@@ -29,6 +25,7 @@ router.post(
 
       const newEvent = await Event.create({
         name,
+        kind,
         date,
         time,
         location,
@@ -39,6 +36,7 @@ router.post(
         creator
       });
 
+      console.log(newEvent)
       if(isAttending){
         await Event.findByIdAndUpdate(newEvent._id, {$addToSet:{attending: req.session.currentUser}})
       }

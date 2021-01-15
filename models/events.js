@@ -10,6 +10,7 @@ const eventSchema = new Schema(
       description: String,
       time: String,
       imgPath: String,
+      kind: {type: String, enum: ['study', 'sport', 'social', 'other']},
       isPublic: { type: Boolean, default: false},
       attending: [{ type: Schema.Types.ObjectId, ref: "User"}],
       cohort: {type: String, enum: ['web', 'data', 'ux', 'all']}
@@ -20,13 +21,13 @@ const eventSchema = new Schema(
   );
   const Event = mongoose.model('Event', eventSchema);
   
-  createEvent = async() => {
-    const name= 'Study session'
-    const date = new Date()
-    const location = 'Room 2'
-    await Event.create({name, date, location})
-    console.log(name, date, location)
-  }
+  // createEvent = async() => {
+  //   const name= 'Study session'
+  //   const date = new Date()
+  //   const location = 'Room 2'
+  //   await Event.create({name, date, location})
+  //   console.log(name, date, location)
+  // }
 
   // createEvent()
 
