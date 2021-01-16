@@ -20,18 +20,7 @@ router.get("/", async (req, res, next) => {
 
 //USER DETAILS
 
-router.get("/:id", async (req, res, next) => {
-  try {
-    const { id } = req.params;
-    console.log(id);
-    const theUser = await User.findById(id).populate('attending')
-    res.json( theUser );
-  } catch (error) {
-    console.log(error)
-  }
-  
- 
-});
+
 
 //GET ALL USERS
 router.get("/allusers", async (req, res, next) => {
@@ -57,7 +46,19 @@ router.get('/questions', async (req, res, next)=>{
 //WHAT THE USER WANTS
 
 
-//GET RECOMMENDATIOS
+//GET RECOMMENDATIONS
+
+router.get('/recommendations', async (req, res, next)=>{
+  try {
+    const theUser = await User.findById(req.session.currentUser)
+    const interest = theUser.wants
+
+    const theRecommendation = await Event.findOne({kind: interest})
+    res.json(theRecommendation)
+  } catch (error) {
+    console.log(error)
+  }
+})
 
 //EDIT USER
 
@@ -133,8 +134,18 @@ router.post("/uploadpicture", uploadCloud.single("imgPath"), (req, res, next) =>
   res.json({ secure_url: req.file.secure_url });
 });
 
-//see other profile
-
+router.get("/:id", async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    console.log(id, 'is this all users' );
+    const theUser = await User.findById(id).populate('attending')
+    res.json( theUser );
+  } catch (error) {
+    console.log(error)
+  }
+  
+ 
+});
 
 // get user's answers
 
