@@ -43,23 +43,6 @@ router.get('/questions', async (req, res, next)=>{
   }
 })
 
-//WHAT THE USER WANTS
-
-
-//GET RECOMMENDATIONS
-
-router.get('/recommendations', async (req, res, next)=>{
-  try {
-    const theUser = await User.findById(req.session.currentUser)
-    const interest = theUser.wants
-
-    const theRecommendation = await Event.findOne({kind: interest})
-    res.json(theRecommendation)
-  } catch (error) {
-    console.log(error)
-  }
-})
-
 //EDIT USER
 
 router.put("/edit", async (req, res, next) => {

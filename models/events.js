@@ -10,7 +10,6 @@ const eventSchema = new Schema(
       description: String,
       time: String,
       imgPath: String,
-      kind: {type: String, enum: ['study', 'sport', 'social', 'other']},
       isPublic: { type: Boolean, default: false},
       attending: [{ type: Schema.Types.ObjectId, ref: "User"}],
       cohort: {type: String, enum: ['web', 'data', 'ux', 'all']}

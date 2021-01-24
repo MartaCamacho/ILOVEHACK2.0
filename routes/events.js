@@ -10,8 +10,8 @@ router.post(
   "/add-event",
   uploadCloud.single("imgPath"),
   async (req, res, next) => {
-    const { name, creator, kind, imgPath, description, date, time, location, isAttending, isPublic, cohort } = req.body;
-    console.log(kind)
+    const { name, creator, imgPath, description, date, time, location, isAttending, isPublic, cohort } = req.body;
+
     try {
       // const event = await Event.findOne({ name });
       // if (event !== null) {
@@ -25,7 +25,6 @@ router.post(
 
       const newEvent = await Event.create({
         name,
-        kind,
         date,
         time,
         location,
